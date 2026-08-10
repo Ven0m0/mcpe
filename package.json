@@ -1,5 +1,6 @@
 {
   "name": "ender-chest-drop",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "packageManager": "bun@1.3.14"
 }
