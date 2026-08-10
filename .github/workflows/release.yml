@@ -4,6 +4,16 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version part to bump
+        type: choice
+        default: patch
+        options:
+          - patch
+          - minor
+          - major
 
 permissions:
   contents: write
@@ -13,8 +23,61 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Compute next tag
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          LATEST=$(git tag -l 'v*' --sort=-v:refname | head -n1)
+          LATEST=${LATEST:-v0.0.0}
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${LATEST#v}"
+          case "${{ inputs.bump }}" in
+            major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+            minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+            patch) PATCH=$((PATCH + 1)) ;;
+          esac
+          echo "TAG_NAME=v$MAJOR.$MINOR.$PATCH" >> "$GITHUB_ENV"
+
+      - name: Set tag from ref
+        if: github.event_name == 'push'
+        run: echo "TAG_NAME=${GITHUB_REF_NAME}" >> "$GITHUB_ENV"
+
+      - name: Update CHANGELOG.md
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --tag ${{ env.TAG_NAME }} -o CHANGELOG.md
+
+      - name: Extract release notes
+        id: release-notes
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --tag ${{ env.TAG_NAME }} --latest --strip header
+
+      - name: Commit changelog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- CHANGELOG.md; then
+            git add CHANGELOG.md
+            git commit -m "chore: update changelog for $TAG_NAME"
+            git push origin main
+          fi
+
+      - name: Create and push tag
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git tag "$TAG_NAME"
+          git push origin "$TAG_NAME"
+
       - name: Build mcaddon
         run: zip -r ender_chest_drop.mcaddon ender_chest_drop
+
       - uses: softprops/action-gh-release@v3
         with:
+          tag_name: ${{ env.TAG_NAME }}
+          body: ${{ steps.release-notes.outputs.content }}
           files: ender_chest_drop.mcaddon
