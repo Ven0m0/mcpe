@@ -2,3 +2,4 @@
 .serena/
 .codegraph/
 node_modules/
+*.mcaddon
