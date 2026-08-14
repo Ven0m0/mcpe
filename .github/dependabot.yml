@@ -4,8 +4,23 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    versioning-strategy: "increase-if-necessary
+    groups:
+      github-actions-all:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      github-actions-all:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
