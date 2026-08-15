@@ -1,1 +1,2 @@
-- Add linting/formatting via oxlint/oxfmt.
+- Add linting/formatting via oxlint/oxfmt
+- Create a behavior pack for 1.26.40.05 which makes all kinds of grass, leaves, vines, sculk drop as if they had been mined with silk touch
