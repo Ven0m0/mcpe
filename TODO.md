@@ -1,1 +1,0 @@
-- add all kinds of glass and their glass pane variants to @silk_touch_drop/scripts/main.js

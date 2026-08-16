@@ -6,8 +6,18 @@ difference. No other block, item, recipe, or vanilla behavior is changed.
 
 Covered blocks:
 
-- Grass, all vanilla leaves (oak, spruce, birch, jungle, acacia, dark oak, mangrove, cherry,
-  azalea, flowering azalea), vines, weeping vines, twisting vines, sculk, sculk vein
+- All vanilla leaves (oak, spruce, birch, jungle, acacia, dark oak, mangrove, cherry, azalea,
+  flowering azalea), vines, weeping vines, twisting vines
+- Sculk family: sculk, sculk vein, sculk catalyst, sculk shrieker, sculk sensor, calibrated sculk
+  sensor. The four non-sculk-block members normally drop nothing (experience only) without Silk
+  Touch.
+- Ice, packed ice, blue ice. Plain ice normally leaves water behind and drops nothing; this pack
+  drops the ice block and leaves air, matching Silk Touch behavior.
+- Turtle egg. A turtle egg block holds 1-4 eggs; this pack drops exactly 1 regardless of how many
+  the block held, consistent with the one-drop rule applied everywhere else.
+- Glass: plain glass, tinted glass, all 16 stained glass colors, plain glass pane, and all 16
+  stained glass pane colors. Normally these shatter without Silk Touch; this pack always drops
+  exactly 1 of the block broken.
 - Ender Chest: normally drops 8 obsidian without Silk Touch, or the chest itself with Silk Touch;
   this pack always drops exactly 1 `minecraft:ender_chest` regardless. Ender Chest interaction and
   per-player stored contents are untouched — the pack only affects the block-break moment.
@@ -45,6 +55,14 @@ each time:
 - Creative mode: block breaks instantly, drops nothing (matches vanilla creative behavior)
 - Ender Chest specifically: place a few items in it, break it, place a new one, confirm the same
   items are still there (contents are stored per-player, not on the block, and are unaffected)
+
+## Deliberately not covered
+
+- **Bee nests and beehives.** A bee nest already drops itself with Silk Touch, and crucially it
+  drops *with the bees still inside*. Because this pack works by cancelling the break and spawning
+  a fresh item, it can only ever produce an empty nest — covering it would make the Silk Touch case
+  strictly worse than vanilla. Any block whose value lives in its block entity data belongs in this
+  category.
 
 ## Known limitations
 

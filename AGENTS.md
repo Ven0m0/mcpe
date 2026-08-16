@@ -30,8 +30,13 @@ then activate it under a world's Behavior Packs settings.
 
 ## Architecture
 
-Single responsibility: override vanilla break drops for a fixed set of blocks (grass, leaves,
-vines, sculk, and the Ender Chest) so each always drops exactly 1 of itself, Silk Touch or not.
+Single responsibility: override vanilla break drops for a fixed set of blocks (leaves, vines, the
+sculk family, ice variants, glass and glass panes, turtle egg, and the Ender Chest) so each always
+drops exactly 1 of itself, Silk Touch or not.
+
+Blocks whose value lives in block entity data are deliberately excluded — the cancel-and-respawn
+approach can only spawn a bare item, so covering a bee nest would drop an empty nest and lose the
+bees that real Silk Touch preserves. See README.md "Deliberately not covered".
 
 This can't be done with a data-driven loot-table override — vanilla block drops are hardcoded in
 the Bedrock engine and are not exposed through any `loot_tables/blocks/` path or block-identifier
