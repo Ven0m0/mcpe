@@ -1,0 +1,17 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "No Bat Spawn",
+    "description": "Bats no longer spawn naturally. Spawn eggs, /summon, and monster spawners are unaffected.",
+    "uuid": "cd20dae0-2963-4f26-89e2-ecd808f5c74a",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 17, 0]
+  },
+  "modules": [
+    {
+      "uuid": "dbe91048-02a9-4d0c-b3ea-c98eb3fd4f13",
+      "version": [1, 0, 0],
+      "type": "data"
+    }
+  ]
+}
