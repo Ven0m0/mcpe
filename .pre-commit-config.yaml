@@ -28,3 +28,10 @@ repos:
         entry: bunx oxfmt --check
         language: system
         files: \.js$
+
+      - id: validate-packs
+        name: validate behavior pack manifests
+        entry: python3 scripts/validate_packs.py
+        language: system
+        files: (manifest\.json|spawn_rules/.*\.json)$
+        pass_filenames: false

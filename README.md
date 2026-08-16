@@ -1,4 +1,13 @@
-# Silk Touch Drops
+# mcpe
+
+Two independent Minecraft Bedrock Edition behavior packs. Each has its own folder, manifest, and
+UUIDs; either can be applied to a world without the other, and both can be enabled together.
+
+- [`silk_touch_drop`](silk_touch_drop) — always drop exactly 1 of a block when broken, Silk Touch
+  or not
+- [`no_bat_spawn`](no_bat_spawn) — stop bats spawning naturally
+
+## Silk Touch Drops
 
 Behavior pack that changes vanilla break-drop behavior for a set of blocks: breaking any of them
 with any tool, including bare hand, always drops exactly 1 of the block itself. Silk Touch makes no
@@ -22,12 +31,12 @@ Covered blocks:
   this pack always drops exactly 1 `minecraft:ender_chest` regardless. Ender Chest interaction and
   per-player stored contents are untouched — the pack only affects the block-break moment.
 
-## Supported Bedrock version
+### Supported Bedrock version
 
 `1.26.40.05` and newer (`min_engine_version` `[1, 26, 40]`). Uses the stable `@minecraft/server`
 `2.9.0` script module - no experimental toggles or Beta APIs required.
 
-## Installation
+### Installation
 
 Copy the `silk_touch_drop` folder into your Bedrock `development_behavior_packs` directory (or
 import it as a `.mcpack`):
@@ -36,14 +45,14 @@ import it as a `.mcpack`):
 %LOCALAPPDATA%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\development_behavior_packs\silk_touch_drop
 ```
 
-## Enabling in a world
+### Enabling in a world
 
 1. Create or open a world's settings.
 2. Under **Behavior Packs**, find **Silk Touch Drops** in the available list and activate it.
 3. No resource pack or experimental toggles are required. Works in existing survival worlds; no
    world conversion needed.
 
-## Testing
+### Testing
 
 In a world with the pack active, break each covered block and confirm exactly 1 of itself drops
 each time:
@@ -56,7 +65,7 @@ each time:
 - Ender Chest specifically: place a few items in it, break it, place a new one, confirm the same
   items are still there (contents are stored per-player, not on the block, and are unaffected)
 
-## Deliberately not covered
+### Deliberately not covered
 
 - **Bee nests and beehives.** A bee nest already drops itself with Silk Touch, and crucially it
   drops *with the bees still inside*. Because this pack works by cancelling the break and spawning
@@ -64,10 +73,18 @@ each time:
   strictly worse than vanilla. Any block whose value lives in its block entity data belongs in this
   category.
 
-## Known limitations
+### Known limitations
 
 - Breaking is implemented by cancelling the vanilla break and re-creating it in script, so the
   tool used takes **no durability damage** from breaking a covered block.
 - Only covers player breaks. Explosions, pistons, and `/setblock ... destroy` do not fire the
   event this pack hooks, so they still use vanilla drop behavior. Ender Chests have very high
   blast resistance, so normal explosions (TNT, creepers) cannot break them regardless.
+
+## No Bat Spawn
+
+Behavior pack that stops bats spawning naturally, via a data-driven `spawn_rules/bat.json`
+override with an empty `conditions` array — no script, no `@minecraft/server` dependency. Bat spawn
+eggs, `/summon minecraft:bat`, and monster spawners are unaffected; already-spawned bats are not
+removed. See [`no_bat_spawn/README.md`](no_bat_spawn/README.md) for the full scope, installation,
+and testing steps.

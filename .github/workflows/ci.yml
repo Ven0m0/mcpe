@@ -13,8 +13,12 @@ jobs:
       - run: bun install
       - run: bun run lint
       - run: bun run format:check
-      - run: node --check silk_touch_drop/scripts/main.js
-      - run: python3 -c "import json; json.load(open('silk_touch_drop/manifest.json'))"
+      - name: node --check all scripts
+        run: git ls-files '*.js' | xargs -r -n1 node --check
+      - name: JSON syntax check
+        run: git ls-files '*.json' | xargs -r -n1 python3 -c "import json,sys; json.load(open(sys.argv[1]))"
+      - name: validate behavior pack manifests
+        run: python3 scripts/validate_packs.py
 
   pre-commit:
     runs-on: ubuntu-latest
