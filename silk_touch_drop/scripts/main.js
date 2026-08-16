@@ -1,7 +1,6 @@
 import { world, system, ItemStack, GameMode } from '@minecraft/server';
 
 const TARGET_BLOCKS = new Set([
-  'minecraft:grass',
   'minecraft:oak_leaves',
   'minecraft:spruce_leaves',
   'minecraft:birch_leaves',
