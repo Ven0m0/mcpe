@@ -4,13 +4,13 @@
     "name": "Silk Touch Drops",
     "description": "Leaves, vines, sculk, ice, glass, turtle eggs, and the Ender Chest always drop themselves when broken, Silk Touch or not.",
     "uuid": "29cdfca8-781e-4426-9921-20a53f74087c",
-    "version": [1, 0, 0],
+    "version": [1, 1, 0],
     "min_engine_version": [1, 26, 40]
   },
   "modules": [
     {
       "uuid": "603e21f7-a153-4793-883d-f066ee2c5fdd",
-      "version": [1, 0, 0],
+      "version": [1, 1, 0],
       "type": "script",
       "language": "javascript",
       "entry": "scripts/main.js"
