@@ -1,2 +1,1 @@
-- Add linting/formatting via oxlint/oxfmt
-- Create a behavior pack for 1.26.40.05 which makes all kinds of grass, leaves, vines, sculk drop as if they had been mined with silk touch
+- add all kinds of glass and their glass pane variants to @silk_touch_drop/scripts/main.js
