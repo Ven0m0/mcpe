@@ -8,6 +8,9 @@ Covered blocks:
 
 - Grass, all vanilla leaves (oak, spruce, birch, jungle, acacia, dark oak, mangrove, cherry,
   azalea, flowering azalea), vines, weeping vines, twisting vines, sculk, sculk vein
+- Glass: plain glass, tinted glass, all 16 stained glass colors, plain glass pane, and all 16
+  stained glass pane colors. Normally these shatter without Silk Touch; this pack always drops
+  exactly 1 of the block broken.
 - Ender Chest: normally drops 8 obsidian without Silk Touch, or the chest itself with Silk Touch;
   this pack always drops exactly 1 `minecraft:ender_chest` regardless. Ender Chest interaction and
   per-player stored contents are untouched — the pack only affects the block-break moment.
