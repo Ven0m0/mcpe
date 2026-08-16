@@ -13,9 +13,6 @@ Covered blocks:
   Touch.
 - Ice, packed ice, blue ice. Plain ice normally leaves water behind and drops nothing; this pack
   drops the ice block and leaves air, matching Silk Touch behavior.
-- Bee nest. Note that the bees inside are lost either way — this pack only changes the drop, so a
-  broken nest yields an empty nest, not a populated one. (Beehives already drop themselves in
-  vanilla and are not covered.)
 - Turtle egg. A turtle egg block holds 1-4 eggs; this pack drops exactly 1 regardless of how many
   the block held, consistent with the one-drop rule applied everywhere else.
 - Glass: plain glass, tinted glass, all 16 stained glass colors, plain glass pane, and all 16
@@ -58,6 +55,14 @@ each time:
 - Creative mode: block breaks instantly, drops nothing (matches vanilla creative behavior)
 - Ender Chest specifically: place a few items in it, break it, place a new one, confirm the same
   items are still there (contents are stored per-player, not on the block, and are unaffected)
+
+## Deliberately not covered
+
+- **Bee nests and beehives.** A bee nest already drops itself with Silk Touch, and crucially it
+  drops *with the bees still inside*. Because this pack works by cancelling the break and spawning
+  a fresh item, it can only ever produce an empty nest — covering it would make the Silk Touch case
+  strictly worse than vanilla. Any block whose value lives in its block entity data belongs in this
+  category.
 
 ## Known limitations
 

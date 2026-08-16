@@ -23,7 +23,6 @@ const TARGET_BLOCKS = new Set([
   'minecraft:ice',
   'minecraft:packed_ice',
   'minecraft:blue_ice',
-  'minecraft:bee_nest',
   'minecraft:turtle_egg',
   'minecraft:ender_chest',
   'minecraft:glass',
