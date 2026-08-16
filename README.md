@@ -6,8 +6,18 @@ difference. No other block, item, recipe, or vanilla behavior is changed.
 
 Covered blocks:
 
-- Grass, all vanilla leaves (oak, spruce, birch, jungle, acacia, dark oak, mangrove, cherry,
-  azalea, flowering azalea), vines, weeping vines, twisting vines, sculk, sculk vein
+- All vanilla leaves (oak, spruce, birch, jungle, acacia, dark oak, mangrove, cherry, azalea,
+  flowering azalea), vines, weeping vines, twisting vines
+- Sculk family: sculk, sculk vein, sculk catalyst, sculk shrieker, sculk sensor, calibrated sculk
+  sensor. The four non-sculk-block members normally drop nothing (experience only) without Silk
+  Touch.
+- Ice, packed ice, blue ice. Plain ice normally leaves water behind and drops nothing; this pack
+  drops the ice block and leaves air, matching Silk Touch behavior.
+- Bee nest. Note that the bees inside are lost either way — this pack only changes the drop, so a
+  broken nest yields an empty nest, not a populated one. (Beehives already drop themselves in
+  vanilla and are not covered.)
+- Turtle egg. A turtle egg block holds 1-4 eggs; this pack drops exactly 1 regardless of how many
+  the block held, consistent with the one-drop rule applied everywhere else.
 - Glass: plain glass, tinted glass, all 16 stained glass colors, plain glass pane, and all 16
   stained glass pane colors. Normally these shatter without Silk Touch; this pack always drops
   exactly 1 of the block broken.
