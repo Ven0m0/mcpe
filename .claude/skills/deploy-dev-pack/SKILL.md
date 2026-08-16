@@ -1,6 +1,6 @@
 ---
 name: deploy-dev-pack
-description: Mirror ender_chest_drop/ into the Minecraft Bedrock development_behavior_packs folder for manual in-game testing
+description: Mirror silk_touch_drop/ into the Minecraft Bedrock development_behavior_packs folder for manual in-game testing
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ Mirrors the behavior pack into Minecraft's development folder so it shows up und
 Run:
 
 ```powershell
-robocopy "ender_chest_drop" "$env:LOCALAPPDATA\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\development_behavior_packs\ender_chest_drop" /MIR /XD .git
+robocopy "silk_touch_drop" "$env:LOCALAPPDATA\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\development_behavior_packs\silk_touch_drop" /MIR /XD .git
 ```
 
 Robocopy exit codes 0-7 are success (bitflags for copied/skipped/mismatched files); 8+ means failure.

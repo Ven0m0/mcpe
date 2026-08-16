@@ -2,7 +2,7 @@
   "format_version": 2,
   "header": {
     "name": "Silk Touch Drops",
-    "description": "Grass, leaves, vines, and sculk blocks always drop themselves when broken, Silk Touch or not.",
+    "description": "Grass, leaves, vines, sculk, and the Ender Chest always drop themselves when broken, Silk Touch or not.",
     "uuid": "29cdfca8-781e-4426-9921-20a53f74087c",
     "version": [1, 0, 0],
     "min_engine_version": [1, 26, 40]

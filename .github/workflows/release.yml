@@ -73,15 +73,11 @@ jobs:
           git tag "$TAG_NAME"
           git push origin "$TAG_NAME"
 
-      - name: Build mcaddons
-        run: |
-          zip -r ender_chest_drop.mcaddon ender_chest_drop
-          zip -r silk_touch_drop.mcaddon silk_touch_drop
+      - name: Build mcaddon
+        run: zip -r silk_touch_drop.mcaddon silk_touch_drop
 
       - uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ env.TAG_NAME }}
           body: ${{ steps.release-notes.outputs.content }}
-          files: |
-            ender_chest_drop.mcaddon
-            silk_touch_drop.mcaddon
+          files: silk_touch_drop.mcaddon

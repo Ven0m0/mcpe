@@ -17,6 +17,7 @@ const TARGET_BLOCKS = new Set([
   'minecraft:twisting_vines',
   'minecraft:sculk',
   'minecraft:sculk_vein',
+  'minecraft:ender_chest',
 ]);
 
 world.beforeEvents.playerBreakBlock.subscribe((ev) => {

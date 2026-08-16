@@ -3,11 +3,11 @@
 .SYNOPSIS
   Packages each behavior pack folder into its own .mcaddon.
 .DESCRIPTION
-  Zips ender_chest_drop/ and silk_touch_drop/ with 7-Zip and renames the
-  archive extension to .mcaddon so each can be imported by Minecraft.
+  Zips silk_touch_drop/ with 7-Zip and renames the archive extension to
+  .mcaddon so it can be imported by Minecraft.
 .EXAMPLE
   .\Build-McAddon.ps1
-  Rebuilds ender_chest_drop.mcaddon and silk_touch_drop.mcaddon at the repo root.
+  Rebuilds silk_touch_drop.mcaddon at the repo root.
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param ()
@@ -15,7 +15,7 @@ param ()
 $ErrorActionPreference = 'Stop'
 
 $sevenZip = 'C:\Program Files\7-Zip\7z.exe'
-$packNames = 'ender_chest_drop', 'silk_touch_drop'
+$packNames = , 'silk_touch_drop'
 
 if (-not (Test-Path -Path $sevenZip)) {
   throw "7-Zip not found at $sevenZip"

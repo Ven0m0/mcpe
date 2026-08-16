@@ -9,7 +9,7 @@ try {
 
 $filePath = $payload.tool_input.file_path
 if ($filePath -match '\.mcaddon$') {
-  [Console]::Error.WriteLine("$filePath is a build artifact zipped by the release workflow. Edit source under ender_chest_drop/ instead.")
+  [Console]::Error.WriteLine("$filePath is a build artifact zipped by the release workflow. Edit source under silk_touch_drop/ instead.")
   exit 2
 }
 

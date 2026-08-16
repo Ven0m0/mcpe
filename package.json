@@ -1,12 +1,12 @@
 {
-  "name": "ender-chest-drop",
+  "name": "silk-touch-drop",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "lint": "oxlint",
     "format": "oxfmt --write '*/scripts/*.js'",
     "format:check": "oxfmt --check '*/scripts/*.js'",
-    "typecheck": "node --check ender_chest_drop/scripts/main.js"
+    "typecheck": "node --check silk_touch_drop/scripts/main.js"
   },
   "dependencies": {
     "@minecraft/server": "^2.9.0"
