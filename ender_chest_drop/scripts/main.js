@@ -1,7 +1,7 @@
-import { world, system, ItemStack, GameMode } from "@minecraft/server";
+import { world, system, ItemStack, GameMode } from '@minecraft/server';
 
 world.beforeEvents.playerBreakBlock.subscribe((ev) => {
-  if (!ev.block.matches("minecraft:ender_chest")) return;
+  if (!ev.block.matches('minecraft:ender_chest')) return;
 
   ev.cancel = true;
 
@@ -11,9 +11,9 @@ world.beforeEvents.playerBreakBlock.subscribe((ev) => {
 
   system.run(() => {
     if (!block.isValid) return;
-    block.setType("minecraft:air");
+    block.setType('minecraft:air');
     if (shouldDrop) {
-      dimension.spawnItem(new ItemStack("minecraft:ender_chest", 1), at);
+      dimension.spawnItem(new ItemStack('minecraft:ender_chest', 1), at);
     }
   });
 });

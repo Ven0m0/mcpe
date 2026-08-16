@@ -15,3 +15,16 @@ repos:
         entry: node --check
         language: system
         files: \.js$
+
+      - id: oxlint
+        name: oxlint
+        entry: bunx oxlint
+        language: system
+        files: \.js$
+        pass_filenames: false
+
+      - id: oxfmt
+        name: oxfmt --check
+        entry: bunx oxfmt --check
+        language: system
+        files: \.js$
