@@ -1,1 +1,0 @@
-- [ ] I need to have @quiet_ravager.mcpack as a folder and I need to integrate it into the release/build process, but as a mcpack instead of addon
