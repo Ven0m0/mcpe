@@ -4,10 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Two independent Minecraft Bedrock Edition behavior packs, `silk_touch_drop/` and `no_bat_spawn/`.
-No build system, no package manager, no tests — each pack is a static JSON manifest, loaded
-directly by the game engine, plus one script file for `silk_touch_drop` only. Either pack can be
-applied to a world without the other; they ship separate manifests and UUIDs and don't interact.
+Three independent Minecraft Bedrock Edition packs: behavior packs `silk_touch_drop/` and
+`no_bat_spawn/`, and resource pack `quiet_ravager/`. No build system, no package manager, no
+tests — each pack is a static JSON manifest, loaded directly by the game engine, plus one script
+file for `silk_touch_drop` only. Any pack can be applied to a world without the others; they ship
+separate manifests and UUIDs and don't interact.
 
 ## Commands
 
@@ -18,21 +19,28 @@ python -c "import json; json.load(open('silk_touch_drop/manifest.json'))"    # J
 node --check silk_touch_drop/scripts/main.js                                  # JS syntax
 python -c "import json; json.load(open('no_bat_spawn/manifest.json'))"        # JSON syntax
 python -c "import json; json.load(open('no_bat_spawn/spawn_rules/bat.json'))" # JSON syntax
+python -c "import json; json.load(open('quiet_ravager/manifest.json'))"       # JSON syntax
+python -c "import json; json.load(open('quiet_ravager/sounds.json'))"         # JSON syntax
 ```
 
 Runtime verification requires launching Minecraft Bedrock and manually testing in a test world —
 for `silk_touch_drop`, breaking each covered block (see README.md "Testing" for the exact case
 matrix — hand/wooden/diamond tool, with/without Silk Touch, creative mode, Ender Chest
 contents-preserved check); for `no_bat_spawn`, waiting out spawn cycles underground with the
-Content Log enabled (see `no_bat_spawn/README.md` "Testing").
+Content Log enabled (see `no_bat_spawn/README.md` "Testing"); for `quiet_ravager`, spawning a
+Ravager and confirming its sounds are quieter (see `quiet_ravager/README.md` "Testing").
 
 ## Deploying for manual testing
 
-Copy a pack folder (`silk_touch_drop/` or `no_bat_spawn/`) into:
+Copy a behavior pack folder (`silk_touch_drop/` or `no_bat_spawn/`) into:
 ```
 %LOCALAPPDATA%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\development_behavior_packs\
 ```
-then activate it under a world's Behavior Packs settings.
+or the resource pack folder (`quiet_ravager/`) into:
+```
+%LOCALAPPDATA%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\development_resource_packs\
+```
+then activate it under a world's Behavior Packs or Resource Packs settings.
 
 ## Architecture
 
@@ -78,3 +86,17 @@ see `no_bat_spawn/README.md` for the one-time `/kill` cleanup command.
 
 Manifest targets `min_engine_version [1, 17, 0]`, matching the `spawn_rules` `format_version
 1.17.0` copied verbatim from vanilla's own `spawn_rules/bat.json`.
+
+### `quiet_ravager`
+
+Resource pack, not a behavior pack — the only one of the three. Its manifest declares a single
+`"type": "resources"` module, and its `sounds.json` overrides `entity_sounds.entities.ravager` to
+0.2 volume for every event (ambient, hurt, death, step, bite, roar, stun, raid ambient, celebrate).
+No script, no data module, no behavior-pack dependency.
+
+Ships as `.mcpack`, not `.mcaddon` — a single-pack archive with `manifest.json` at the zip root,
+rather than the pack folder itself. `Build-McAddon.ps1` and `.github/workflows/release.yml` both
+branch on this: `silk_touch_drop`/`no_bat_spawn` zip the pack folder in as the archive root
+(`.mcaddon`), `quiet_ravager` zips the folder's *contents* at the archive root (`.mcpack`).
+
+Manifest targets `min_engine_version [1, 26, 44]`.

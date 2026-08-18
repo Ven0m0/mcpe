@@ -1,11 +1,12 @@
 # mcpe
 
-Two independent Minecraft Bedrock Edition behavior packs. Each has its own folder, manifest, and
-UUIDs; either can be applied to a world without the other, and both can be enabled together.
+Three independent Minecraft Bedrock Edition packs. Each has its own folder, manifest, and UUIDs;
+any of them can be applied to a world without the others, and all can be enabled together.
 
-- [`silk_touch_drop`](silk_touch_drop) — always drop exactly 1 of a block when broken, Silk Touch
-  or not
-- [`no_bat_spawn`](no_bat_spawn) — stop bats spawning naturally
+- [`silk_touch_drop`](silk_touch_drop) (behavior pack) — always drop exactly 1 of a block when
+  broken, Silk Touch or not
+- [`no_bat_spawn`](no_bat_spawn) (behavior pack) — stop bats spawning naturally
+- [`quiet_ravager`](quiet_ravager) (resource pack) — lower vanilla Ravager sounds to 20% volume
 
 ## Silk Touch Drops
 

@@ -73,10 +73,11 @@ jobs:
           git tag "$TAG_NAME"
           git push origin "$TAG_NAME"
 
-      - name: Build mcaddons
+      - name: Build mcaddons and mcpacks
         run: |
           zip -r silk_touch_drop.mcaddon silk_touch_drop
           zip -r no_bat_spawn.mcaddon no_bat_spawn
+          (cd quiet_ravager && zip -r ../quiet_ravager.mcpack .)
 
       - uses: softprops/action-gh-release@v3
         with:
@@ -85,3 +86,4 @@ jobs:
           files: |
             silk_touch_drop.mcaddon
             no_bat_spawn.mcaddon
+            quiet_ravager.mcpack

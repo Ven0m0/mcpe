@@ -3,3 +3,4 @@
 .codegraph/
 node_modules/
 *.mcaddon
+*.mcpack

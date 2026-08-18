@@ -1,5 +1,5 @@
 #Requires -Version 5.1
-# PreToolUse hook: blocks hand-edits to the built .mcaddon artifact.
+# PreToolUse hook: blocks hand-edits to built .mcaddon/.mcpack artifacts.
 
 try {
   $payload = [Console]::In.ReadToEnd() | ConvertFrom-Json
@@ -8,8 +8,8 @@ try {
 }
 
 $filePath = $payload.tool_input.file_path
-if ($filePath -match '\.mcaddon$') {
-  [Console]::Error.WriteLine("$filePath is a build artifact zipped by the release workflow. Edit source under silk_touch_drop/ instead.")
+if ($filePath -match '\.(mcaddon|mcpack)$') {
+  [Console]::Error.WriteLine("$filePath is a build artifact zipped by the release workflow. Edit the pack source folder instead.")
   exit 2
 }
 

@@ -1,13 +1,17 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-  Packages each behavior pack folder into its own .mcaddon.
+  Packages each pack folder into its .mcaddon or .mcpack archive.
 .DESCRIPTION
-  Zips silk_touch_drop/ with 7-Zip and renames the archive extension to
-  .mcaddon so it can be imported by Minecraft.
+  Zips each pack folder with 7-Zip. Behavior packs (silk_touch_drop,
+  no_bat_spawn) are zipped as .mcaddon, with the pack folder itself as the
+  zip root - Minecraft's multi-pack addon format. quiet_ravager is zipped as
+  .mcpack, with the folder's contents (not the folder) at the zip root -
+  Minecraft's single-pack format.
 .EXAMPLE
   .\Build-McAddon.ps1
-  Rebuilds silk_touch_drop.mcaddon at the repo root.
+  Rebuilds silk_touch_drop.mcaddon, no_bat_spawn.mcaddon, and
+  quiet_ravager.mcpack at the repo root.
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param ()
@@ -15,15 +19,19 @@ param ()
 $ErrorActionPreference = 'Stop'
 
 $sevenZip = 'C:\Program Files\7-Zip\7z.exe'
-$packNames = , 'silk_touch_drop'
+$packs = @(
+  @{ Name = 'silk_touch_drop'; Extension = 'mcaddon' }
+  @{ Name = 'no_bat_spawn'; Extension = 'mcaddon' }
+  @{ Name = 'quiet_ravager'; Extension = 'mcpack' }
+)
 
 if (-not (Test-Path -Path $sevenZip)) {
   throw "7-Zip not found at $sevenZip"
 }
 
-foreach ($packName in $packNames) {
-  $packDir = Join-Path -Path $PSScriptRoot -ChildPath $packName
-  $outputPath = Join-Path -Path $PSScriptRoot -ChildPath "$packName.mcaddon"
+foreach ($pack in $packs) {
+  $packDir = Join-Path -Path $PSScriptRoot -ChildPath $pack.Name
+  $outputPath = Join-Path -Path $PSScriptRoot -ChildPath "$($pack.Name).$($pack.Extension)"
 
   if (-not (Test-Path -Path $packDir)) {
     throw "Pack folder not found: $packDir"
@@ -33,12 +41,17 @@ foreach ($packName in $packNames) {
     Remove-Item -Path $outputPath -Force
   }
 
-  if ($PSCmdlet.ShouldProcess($outputPath, 'Create mcaddon archive')) {
-    Push-Location -Path $PSScriptRoot
-    try {
-      & $sevenZip a -tzip $outputPath $packName | Out-Null
-    } finally {
-      Pop-Location
+  if ($PSCmdlet.ShouldProcess($outputPath, 'Create archive')) {
+    if ($pack.Extension -eq 'mcpack') {
+      # zip contents at the root - no wrapping pack folder inside the archive
+      & $sevenZip a -tzip $outputPath (Join-Path -Path $packDir -ChildPath '*') | Out-Null
+    } else {
+      Push-Location -Path $PSScriptRoot
+      try {
+        & $sevenZip a -tzip $outputPath $pack.Name | Out-Null
+      } finally {
+        Pop-Location
+      }
     }
     if ($LASTEXITCODE -ne 0) {
       throw "7-Zip exited with code $LASTEXITCODE"

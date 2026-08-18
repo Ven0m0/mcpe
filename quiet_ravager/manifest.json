@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Ravager 20% Volume",
+    "description": "Reduces all vanilla Ravager sounds to 20% volume. Compatible with Minecraft Bedrock 1.26.44.03.",
+    "uuid": "b0f6de31-2d8f-4bbf-95e0-7cb3c6eb6c84",
+    "version": [
+      1,
+      0,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      44
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "d9a6b9e2-cbf9-4ab8-9562-6f8e2f7c09e2",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ]
+}
