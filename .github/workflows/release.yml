@@ -87,4 +87,5 @@ jobs:
           files: |
             silk_touch_drop.mcaddon
             no_bat_spawn.mcaddon
+            elytra_in_lava.mcaddon
             quiet_ravager.mcpack
