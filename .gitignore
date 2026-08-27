@@ -2,5 +2,6 @@
 .serena/
 .codegraph/
 node_modules/
+.opencode/
 *.mcaddon
 *.mcpack

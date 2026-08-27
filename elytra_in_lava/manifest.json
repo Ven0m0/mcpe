@@ -1,0 +1,25 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Elytra in Lava",
+    "description": "Allows Elytra flight through lava (Java Edition behavior). When gliding into lava, forward momentum is maintained via velocity simulation. Firework rockets provide boost propulsion.",
+    "uuid": "7e06be29-03e7-491d-979d-667318c40620",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "uuid": "f2a0bbd3-22f5-44b9-8016-cd1930325695",
+      "version": [1, 0, 0],
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.9.0"
+    }
+  ]
+}
