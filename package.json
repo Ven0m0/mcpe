@@ -12,7 +12,7 @@
     "@minecraft/server": "^2.9.0"
   },
   "devDependencies": {
-    "oxfmt": "^0.66.0",
+    "oxfmt": "^0.67.0",
     "oxlint": "^1.78.0"
   }
 }
